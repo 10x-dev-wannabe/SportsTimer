@@ -1,2 +1,8 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<slot></slot>
+
+<h1>
+    Sports Timer
+</h1>
+
+<a href="/intervalTimer">Interval Timer</a><br>
+<a href="/reactionTimer">Reaction Timer</a>
