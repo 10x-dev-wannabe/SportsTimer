@@ -14,3 +14,14 @@ a {
     font-size: 6em;
     color: #eee;
 }
+
+button {
+    font-size: 6em;
+    background-color: #999;
+    color:#fff;
+    width: 25%;
+}
+
+h3 {
+    font-size: 5em;
+}
