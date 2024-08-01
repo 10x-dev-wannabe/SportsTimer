@@ -2,8 +2,6 @@
 
 </script>
 
-<a href="/" style="position: absolute; left:20px; top: 5px; z-index:1; text-decoration: none">&#8249<br></a>
-
 <div>
     <table style="margin-left:auto; margin-right:auto; margin-top:1em">
         <tr>sets</tr>

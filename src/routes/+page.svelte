@@ -1,8 +1,9 @@
-<slot></slot>
+<Menu />
 
-<h1>
-    Sports Timer
-</h1>
+<script>
+    import Menu from "./menu.svelte";
+</script>
 
-<a href="/intervalTimer">Interval Timer</a><br>
-<a href="/reactionTimer">Reaction Timer</a>
+
+<style>
+</style>
