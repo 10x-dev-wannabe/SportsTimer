@@ -1,57 +1,35 @@
 <script>
     import Menu from "./menu.svelte";
-    let sets
-    let work
-    let rest
-    let working = false;
-    function start() {
-        working = true;
-    }
-    function stop() {
-        working = false;
-    }
+    import { timer } from "./stores.js";
 </script>
 
-<main>
+<Menu 
+    bind:sets={$timer.sets}
+    bind:work={$timer.work}
+    bind:rest={$timer.rest}
+/>
 
-{#if working}
-    <button id="stop" on:click={stop}>
-        <div style="height: 0;">
-            <p style="margin: 0; padding-top:0; line-height:1px">
-                &#10799;
-            </p>
-        </div>
-    </button>
-{:else}
-    <Menu 
-        bind:sets={sets}
-        bind:work={work}
-        bind:rest={rest}
-    />
+<a id="start" href="/live">start</a>
 
-    <button id='start' on:click={start}>
-        START
-    </button>
-{/if}
-
-</main>
 
 <style>
     #start {
+        color: #fff;
+        text-decoration: none;
+        font-size: 10vmin;
         background-color: #00ff00;
         position: absolute;
         bottom: 4vmin;
         right: 4vmin;
     }
-    #stop {
-        position: absolute;
-        top: 4vmin;
-        left: 4vmin;
-        padding: none;
-        background-color: #00000000;
-        width: auto;
-        height: auto;
-        font-size: 10em;
-        border: none;
+    @media screen and (orientation:portrait) {
+        #start {
+            position:absolute;
+            bottom: 4vmin;
+            left: auto;
+            right: auto;
+            width: 50%;
+            transform: translateX(-50%);
+        }
     }
 </style>

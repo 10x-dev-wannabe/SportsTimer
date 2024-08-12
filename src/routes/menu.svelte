@@ -21,24 +21,32 @@
             <tr>rest</tr>
             <tr><input type="number" min=0 max="100" bind:value={restMin}>:<input type="number" min=0 max="60" bind:value={restSec}></tr>
         </table>
-        <p>{sets} {work} {rest}</p>
     </div>
 </main>
 
 <style>
     div {
         position: absolute;
-        width: 20cm;
+        width: 40vw;
         height: 90vh;
         background-color: #55555555;
         margin: 3em;
         overflow: hidden;
         text-align: center;
     }
+    
+    @media screen and (orientation:portrait) {
+        div{
+            width: 90vw;
+            left: auto;
+            right: auto;
+        }
+    }
     tr {
         font-size: 5em;
     }
     input[type="number"] {
+        color: #fff;
         initial-value: 0;
         font-size: 1em;
         text-align: center;
