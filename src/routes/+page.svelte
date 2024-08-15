@@ -21,6 +21,7 @@
         position: absolute;
         bottom: 4vmin;
         right: 4vmin;
+        width: 20vw;
     }
     @media screen and (orientation:portrait) {
         #start {
