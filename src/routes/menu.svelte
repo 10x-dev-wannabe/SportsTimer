@@ -11,18 +11,17 @@
     $: work = (workMin * 60 + workSec) * 100;
 </script>
 
-<main>
-    <div>
-        <table style="margin-left:auto; margin-right:auto; margin-top:1em">
-            <tr>sets</tr>
-            <tr><input type="number" min=0 max="100" bind:value={sets}></tr>
-            <tr>work</tr>
-            <tr><input type="number" min=0 max="100" bind:value={workMin}>:<input type="number" min=0 max="60" bind:value={workSec}></tr>
-            <tr>rest</tr>
-            <tr><input type="number" min=0 max="100" bind:value={restMin}>:<input type="number" min=0 max="60" bind:value={restSec}></tr>
-        </table>
-    </div>
-</main>
+
+<div>
+    <table style="margin-left:auto; margin-right:auto; margin-top:1em">
+        <tr>sets</tr>
+        <tr><input type="number" min=0 max="100" bind:value={sets}></tr>
+        <tr>work</tr>
+        <tr><input type="number" min=0 max="100" bind:value={workMin}>:<input type="number" min=0 max="60" bind:value={workSec}></tr>
+        <tr>rest</tr>
+        <tr><input type="number" min=0 max="100" bind:value={restMin}>:<input type="number" min=0 max="60" bind:value={restSec}></tr>
+    </table>
+</div>
 
 <style>
     div {
@@ -37,9 +36,8 @@
     
     @media screen and (orientation:portrait) {
         div{
-            width: 90vw;
-            left: auto;
-            right: auto;
+            margin: 0;
+            width: 98vw;
         }
     }
     tr {
