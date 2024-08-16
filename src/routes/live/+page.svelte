@@ -1,41 +1,58 @@
 <script>
+    import { goto } from "$app/navigation";
     import { timer } from "../stores";
+
+    const audio = new Audio('beep.mp3');
+
     let time = 6000;
     let sets = $timer.sets;
     $: m = Math.trunc(time / 60000);
-    $: s = Math.trunc(time % 60000 / 1000);
+    $: s = Math.ceil(time % 60000 / 1000);
 
     let bg = "#55bbdd";
     let interval;
     let status = "GET READY";
 
     function start(){
-        interval = setInterval(clock, 10)
+        interval = setInterval(clock, 10);
     }
     function clock(){
         time-= 10;
     }
     $: if(time<=0){
-        bg = "#0c0";
         clearInterval(interval);
+        if (sets != 0){
+            audio.play();
+            if (status === "GET READY" || status === "rest" ) {
+                status = "work";
+                time = $timer.work;
+                interval = setInterval(clock, 10);
+                sets--;
+                bg = "#3c3";
+            } else if (status === "work") {
+                status = "rest";
+                time = $timer.rest;
+                interval = setInterval(clock, 10);
+                bg = "#707"
+        }} else {
+            goto("/")
+        }
     }
-
 
     $: style="background-color:"+bg;
 </script>
 
 
 <whomp style={style}>
-
-
 <a id="stop" href="/" style="margin: 0; padding-top:0; line-height:1px yindex=-1">
         &#10799;
 </a>
 
 <br>
 <br>
+    <sets>{sets}</sets>
     <time style="color: #fff;" on:load={start()}>
-        {m}:{s}<br>
+        {m<10 ? "0"+m : m}:{s<10 ? "0"+s : s}<br>
     </time>
     <status>
         {status}
@@ -60,13 +77,15 @@
         top: 0;
     }
     
-    time {
-        font-size: 25vw;
+    time, sets{
+        font-size: 25vmin;
         position: absolute;
         top: 50%;
         left: auto;
         transform: translateX(-50%) translateY(-70%);
-
+    }
+    sets{
+        top:20vh
     }
     #stop {
         color: #fff;

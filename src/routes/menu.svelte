@@ -7,8 +7,8 @@
     let restSec = 0;
     let restMin = 0;
 
-    $: rest = (restMin * 60 + restSec) * 100;
-    $: work = (workMin * 60 + workSec) * 100;
+    $: rest = (restMin * 60 + restSec) * 1000;
+    $: work = (workMin * 60 + workSec) * 1000;
 </script>
 
 
