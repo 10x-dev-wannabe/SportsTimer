@@ -1,10 +1,8 @@
 <script>
     import { goto } from "$app/navigation";
     import { timer } from "../stores";
-
-    const audio = new Audio('beep.mp3');
-
-    let time = 6000;
+    
+    let time = 5000;
     let sets = $timer.sets;
     $: m = Math.trunc(time / 60000);
     $: s = Math.ceil(time % 60000 / 1000);
@@ -20,9 +18,9 @@
         time-= 10;
     }
     $: if(time<=0){
+        
         clearInterval(interval);
         if (sets != 0){
-            audio.play();
             if (status === "GET READY" || status === "rest" ) {
                 status = "work";
                 time = $timer.work;
@@ -41,7 +39,6 @@
 
     $: style="background-color:"+bg;
 </script>
-
 
 <whomp style={style}>
 <a id="stop" href="/" style="margin: 0; padding-top:0; line-height:1px yindex=-1">

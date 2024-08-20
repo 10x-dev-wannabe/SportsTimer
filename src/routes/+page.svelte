@@ -1,6 +1,17 @@
 <script>
     import Menu from "./menu.svelte";
     import { timer } from "./stores.js";
+    import {Howl, Howler} from 'howler';
+    import beep from "$lib/beep.mp3"
+    import select from "$lib/select.wav"
+
+    let sound = new Howl({
+        src: [select]
+    })
+    function click() {
+        sound.play();
+    }
+
 </script>
 
 <Menu 
@@ -9,9 +20,7 @@
     bind:rest={$timer.rest}
 />
 
-
-<a id="start" href="/live">start</a>
-
+<a id="start" href="/live" on:click={click}>start</a>
 
 <style>
     #start {
