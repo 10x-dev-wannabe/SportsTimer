@@ -3,28 +3,38 @@
     import { timer } from "../stores";
     import {Howl, Howler} from 'howler';
     
+    // Import and create the sound
     import beep from '$lib/beep.mp3';
-
     const beepH = new Howl({
         src: beep,
     })
 
-
+    // Get-Ready time
     let time = 5000;
-    let sets = $timer.sets;
+    // Get minutes and seconds
     $: m = Math.trunc(time / 60000);
     $: s = Math.ceil(time % 60000 / 1000);
 
+    
+    let sets = $timer.sets;
     let bg = "#55bbdd";
-    let interval;
     let status = "GET READY";
+    let interval;
 
+    // Set an interval for the GET READY phase,
+    // that decrements the time variable.
     function start(){
-        interval = setInterval(clock, 10);
+        interval = setInterval(()=>time-=10, 10);
     }
     function clock(){
         time-= 10;
     }
+
+
+    // When phase ends, play sound, clear interval,
+    // go to next phase, reset the time, start a new interval,
+    // and change the background color.
+    // Go back home if no sets left
     $: if(time<=0){
         beepH.play();
         clearInterval(interval);
@@ -32,13 +42,13 @@
             if (status === "GET READY" || status === "rest" ) {
                 status = "work";
                 time = $timer.work;
-                interval = setInterval(clock, 10);
+                interval = setInterval(()=>time-=10, 10);
                 sets--;
                 bg = "#3c3";
             } else if (status === "work") {
                 status = "rest";
                 time = $timer.rest;
-                interval = setInterval(clock, 10);
+                interval = setInterval(()=>time-=10, 10);
                 bg = "#707"
         }} else {
             beepH.play();
@@ -46,6 +56,7 @@
         }
     }
 
+    // format bg so it works
     $: style="background-color:"+bg;
 </script>
 

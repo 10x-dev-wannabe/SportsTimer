@@ -1,19 +1,20 @@
 <script>
-    export let sets = 0;
-    export let work = 0;
-    export let rest = 0;
+    export let sets;
+    export let work;
+    export let rest;
     let workSec = 0;
     let workMin = 0;
     let restSec = 0;
     let restMin = 0;
 
+    // Format rest and work as ms time
     $: rest = (restMin * 60 + restSec) * 1000;
     $: work = (workMin * 60 + workSec) * 1000;
 </script>
 
 
 <div>
-    <table style="margin-left:auto; margin-right:auto; margin-top:1em">
+    <table style="margin-left:auto; margin-right:auto;">
         <tr>sets</tr>
         <tr><input type="number" min=0 max="100" bind:value={sets}></tr>
         <tr>work</tr>
@@ -26,33 +27,27 @@
 <style>
     div {
         position: absolute;
-        width: 40vw;
+        width: 98vw;
         height: 90vh;
-        background-color: #55555555;
-        margin: 3em;
+        background-color: #00000000;
+        margin-top: 10vh;
         overflow: hidden;
         text-align: center;
     }
-    
-    @media screen and (orientation:portrait) {
-        div{
-            margin: 0;
-            width: 98vw;
-        }
-    }
+
     tr {
-        font-size: 5em;
+        font-size: clamp(5em, 9vmin, 10em);
     }
     input[type="number"] {
         color: #fff;
         initial-value: 0;
         font-size: 1em;
         text-align: center;
-        background-color: #ffffff11;
-        border-color: #ffffff11;
+        background-color: #ffffff22;
+        border-color: #ffffff33;
         -webkit-appearance: textfield;
         -moz-appearance: textfield;
         appearance: textfield;
-        width: 6cm;
+        width: clamp(2em, 30vw, 10cm)
     }
 </style>

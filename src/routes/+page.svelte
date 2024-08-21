@@ -1,46 +1,52 @@
 <script>
     import Menu from "./menu.svelte";
     import { timer } from "./stores.js";
+    import { goto } from "$app/navigation";
     import {Howl, Howler} from 'howler';
-    import beep from "$lib/beep.mp3"
-    import select from "$lib/select.wav"
-
+    
+    // Import and create the sound
+    import select from "$lib/select.wav";
     let sound = new Howl({
         src: [select]
     })
+
+    // Play sound and navigate to /live
     function click() {
         sound.play();
+        goto("/live");
     }
 
+    //Keyboard shortcut
+    function onKeyDown(e) {
+        if (e.keyCode === 13) {
+            click();
+        }
+    }
 </script>
 
+<!--this is necessary for the keyboard shortcut to work-->
+<svelte:window on:keydown|preventDefault={onKeyDown} />
+
+<!--Bind the menu settings to the timer object in the stores.js file-->
 <Menu 
     bind:sets={$timer.sets}
     bind:work={$timer.work}
     bind:rest={$timer.rest}
 />
 
-<a id="start" href="/live" on:click={click}>start</a>
+<!--start button-->
+<button id="start" on:click={click}>start</button>
 
 <style>
     #start {
         color: #fff;
-        text-decoration: none;
-        font-size: 10vmin;
+        font-size: 10vh;
         background-color: #00ff00;
-        position: absolute;
+        position:absolute;
         bottom: 4vmin;
-        right: 4vmin;
-        width: 20vw;
-    }
-    @media screen and (orientation:portrait) {
-        #start {
-            position:absolute;
-            bottom: 4vmin;
-            left: auto;
-            right: auto;
-            width: 50%;
-            transform: translateX(-50%);
-        }
+        left: auto;
+        right: auto;
+        transform: translateX(-50%);
+        width: clamp(5em, 65vw, 25cm)
     }
 </style>
