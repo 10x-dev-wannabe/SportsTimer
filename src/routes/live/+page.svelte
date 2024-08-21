@@ -1,7 +1,15 @@
 <script>
     import { goto } from "$app/navigation";
     import { timer } from "../stores";
+    import {Howl, Howler} from 'howler';
     
+    import beep from '$lib/beep.mp3';
+
+    const beepH = new Howl({
+        src: beep,
+    })
+
+
     let time = 5000;
     let sets = $timer.sets;
     $: m = Math.trunc(time / 60000);
@@ -18,7 +26,7 @@
         time-= 10;
     }
     $: if(time<=0){
-        
+        beepH.play();
         clearInterval(interval);
         if (sets != 0){
             if (status === "GET READY" || status === "rest" ) {
@@ -33,6 +41,7 @@
                 interval = setInterval(clock, 10);
                 bg = "#707"
         }} else {
+            beepH.play();
             goto("/")
         }
     }
