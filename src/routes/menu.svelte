@@ -27,7 +27,7 @@
 <style>
     div {
         position: absolute;
-        width: 98vw;
+        width: 50vw;
         height: 90vh;
         background-color: #00000000;
         margin-top: 10vh;
@@ -38,7 +38,7 @@
     tr {
         font-size: clamp(5em, 9vmin, 10em);
     }
-    input[type="number"] {
+    input[type="number"] { 
         color: #fff;
         initial-value: 0;
         font-size: 1em;

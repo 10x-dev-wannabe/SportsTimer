@@ -1,5 +1,6 @@
 <script>
     import Menu from "./menu.svelte";
+    import SignalsMenu from "./signals-menu.svelte"
     import { timer } from "./stores.js";
     import { goto } from "$app/navigation";
     import {Howl, Howler} from 'howler';
@@ -25,7 +26,7 @@
 </script>
 
 <!--this is necessary for the keyboard shortcut to work-->
-<svelte:window on:keydown|preventDefault={onKeyDown} />
+<!--<svelte:window on:keydown|preventDefault={onKeyDown} />-->
 
 <!--Bind the menu settings to the timer object in the stores.js file-->
 <Menu 
@@ -33,6 +34,7 @@
     bind:work={$timer.work}
     bind:rest={$timer.rest}
 />
+<SignalsMenu/>
 
 <!--start button-->
 <button id="start" on:click={click}>start</button>
