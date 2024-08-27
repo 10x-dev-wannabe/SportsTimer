@@ -1,9 +1,46 @@
 <script>
-    let min;
-    let max;
+    import { actions, mint, maxt} from "./stores";
+
+    let color;
+    let text;
+
+    function makeAction() {
+        if (color===undefined && text===undefined) {
+        } else {
+
+        if (color===undefined) {
+            color = "#00ff00"
+        }
+
+        if (text===undefined) {
+            text = "";
+        }
+
+        let action = {
+            color: color,
+            text: text
+        }
+        $actions.push(action)
+        console.log($actions)
+        
+        color = undefined;
+        text = undefined;
+    }}
+
 </script>
 
 <div id="main">
+    <button on:click={makeAction}>Add action</button>
+    <table>
+        <tr>
+            <td>color</td>
+            <td><input type="color" bind:value={color}></td>
+        </tr>
+        <tr>
+            <td>text</td>
+            <td><input type="textfield" bind:value={text}></td>
+        </tr>
+    </table>
     <table>
         <th colspan="2"><p>ms between actions</p></th>
         <tr>
@@ -11,14 +48,13 @@
             <td><p>Max</p></td>
         </tr>
         <tr>
-            <td><input type="number" bind:value={min}></td>
-            <td><input type="number" bind:value={max}></td>
+            <td><input type="number" bind:value={$mint}></td>
+            <td><input type="number" bind:value={$maxt}></td>
         </tr>
     </table>
 </div>
 
 <style>
-
     #main {
         position: absolute;
         width:45%;
@@ -27,13 +63,13 @@
         background-color: #00000000;
         margin-top: 10vh;
         overflow: hidden;
-        text-align: center;
+        text-align: left;
     }
     tr{
-        font-size: clamp(5em, 9vmin, 10em);
+        font-size: clamp(2em, 6vmin, 7em);
     }
     th {
-        font-size: clamp(3em, 7vmin, 8em);
+        font-size: clamp(2em, 6vmin, 7em);
     }
 
     input[type="number"] { 
@@ -52,4 +88,9 @@
     p {
         margin: 0;
     }
+
+    button {
+        width: clamp(4em, 60vw, 20cm)
+    }
+
 </style>

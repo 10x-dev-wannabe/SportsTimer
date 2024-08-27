@@ -5,3 +5,8 @@ export const timer = writable({
     work: 0,
     rest: 0,
 })
+
+export const actions = writable([])
+
+export const mint = writable(0)
+export const maxt = writable(0)

@@ -1,19 +1,23 @@
 <script>
     import { goto } from "$app/navigation";
-    import { timer } from "../stores";
+    import { timer, mint, maxt, actions } from "../stores";
     import {Howl, Howler} from 'howler';
-    
+
     // Import and create the sound
     import beep from '$lib/beep.mp3';
+    import select from "$lib/select.wav"
     const beepH = new Howl({
         src: beep,
+    })
+    const selectH = new Howl({
+        src: select
     })
 
     // Get-Ready time
     let time = 5000;
     // Get minutes and seconds
     $: m = Math.trunc(time / 60000);
-    $: s = Math.ceil(time % 60000 / 1000);
+    $: s = Math.trunc(time % 60000 / 1000);
 
     
     let sets = $timer.sets;
@@ -25,9 +29,6 @@
     // that decrements the time variable.
     function start(){
         interval = setInterval(()=>time-=10, 10);
-    }
-    function clock(){
-        time-= 10;
     }
 
 
@@ -45,6 +46,7 @@
                 interval = setInterval(()=>time-=10, 10);
                 sets--;
                 bg = "#3c3";
+                randomAction();
             } else if (status === "work") {
                 status = "rest";
                 time = $timer.rest;
@@ -58,6 +60,37 @@
 
     // format bg so it works
     $: style="background-color:"+bg;
+
+    //---------------//
+    // Random actions
+    //---------------//
+    
+    $mint *=1000;
+    $maxt *=1000;
+
+    let randInterval;
+    let randTime = Math.trunc(($maxt - $mint)* Math.random() +$mint)
+
+    function randomAction() {
+        randInterval = setInterval(()=>{randTime-=10, console.log(randTime)}, 10);
+    }
+    $: if (randTime < 0 && randTime > -10 && status === "work") {
+        selectH.play();         
+        let randActionNr = $actions.length
+        randActionNr = Math.trunc(randActionNr*Math.random()); 
+    bg=$actions[randActionNr].color
+    }
+    $: if (randTime < -1000 && status === "work") {
+        bg = "#3c3";
+        clearInterval(randInterval);
+        randTime = ($maxt - $mint)* Math.random() +$mint;
+        randInterval = setInterval(()=>randTime-=10, 10)
+    }
+    
+
+
+
+
 </script>
 
 <whomp style={style}>
