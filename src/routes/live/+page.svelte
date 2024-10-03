@@ -65,11 +65,11 @@
     // Random actions
     //---------------//
     
-    $mint *=1000;
-    $maxt *=1000;
+    let minRandt = $mint * 1000;
+    let maxRandt = $maxt * 1000;
 
     let randInterval;
-    let randTime = Math.trunc(($maxt - $mint)* Math.random() +$mint)
+    let randTime = Math.trunc((maxRandt - minRandt)* Math.random() +minRandt)
 
     function randomAction() {
         randInterval = setInterval(()=>{randTime-=10, console.log(randTime)}, 10);
@@ -77,14 +77,14 @@
     $: if (randTime < 0 && randTime > -10 && status === "work") {
         selectH.play();         
         let randActionNr = $actions.length
-        randActionNr = Math.trunc(randActionNr*Math.random()); 
-    bg=$actions[randActionNr].color
+        randActionNr = Math.trunc(randActionNr * Math.random()); 
+        bg=$actions[randActionNr].color
     }
     $: if (randTime < -1000 && status === "work") {
         bg = "#3c3";
         clearInterval(randInterval);
-        randTime = ($maxt - $mint)* Math.random() +$mint;
-        randInterval = setInterval(()=>randTime-=10, 10)
+        randTime = (maxRandt - minRandt) * Math.random() + minRandt;
+        randInterval = setInterval(()=>randTime -= 10, 10)
     }
     
 
