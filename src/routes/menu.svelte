@@ -13,41 +13,49 @@
 </script>
 
 
-<div>
-    <table style="margin-left:auto; margin-right:auto;">
-        <tr>sets</tr>
-        <tr><input type="number" min=0 max="100" bind:value={sets}></tr>
-        <tr>work</tr>
-        <tr><input type="number" min=0 max="100" bind:value={workMin}>:<input type="number" min=0 max="60" bind:value={workSec}></tr>
-        <tr>rest</tr>
-        <tr><input type="number" min=0 max="100" bind:value={restMin}>:<input type="number" min=0 max="60" bind:value={restSec}></tr>
-    </table>
+<div id="grid-container">
+  <input type="number" min=0 max="100" bind:value={sets} id="sets" class="input">
+  
+  <input type="number" min=0 max="100" bind:value={workMin} id="workMin" class="input">
+  
+  <input type="number" min=0 max="60" bind:value={workSec} id="workSec" class="input">
+  
+  <input type="number" min=0 max="100" bind:value={restMin} id="restMin" class="input">
+
+  <input type="number" min=0 max="60" bind:value={restSec} id="restSec" class="input"> 
 </div>
 
 <style>
-    div {
-        position: absolute;
-        width: 50vw;
-        height: 90vh;
-        background-color: #00000000;
-        margin-top: 10vh;
-        overflow: hidden;
-        text-align: center;
-    }
+  #grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+  }
 
-    tr {
-        font-size: clamp(5em, 9vmin, 10em);
-    }
-    input[type="number"] { 
-        color: #fff;
-        initial-value: 0;
-        font-size: 1em;
-        text-align: center;
-        background-color: #ffffff22;
-        border-color: #ffffff33;
-        -webkit-appearance: textfield;
-        -moz-appearance: textfield;
-        appearance: textfield;
-        width: clamp(2em, 30vw, 10cm)
-    }
+  #sets {
+    grid-area: 1 / 1 / 2 / span 2;
+    height: 100px;
+  }
+  #workMin {
+    grid-area: 2 / 1 / 3 / span 1;
+    height: 100px;
+  }
+  #workSec {
+    grid-area: 2 / 2 / 3 / span 1;
+    height: 100px;
+  }
+  #restMin {
+    grid-area: 3 / 1 / 4 / span 1;
+    height: 100px;
+  }
+  #restSec {
+    grid-area: 3 / 2 / 4 / span 1;
+    height: 100px;
+  }
+
+  .input {
+    color: white;
+    background-color: black;
+    appearance: textfield;
+  }
 </style>

@@ -42,7 +42,7 @@
         </tr>
     </table>
     <table>
-        <th colspan="2"><p>ms between actions</p></th>
+        <th colspan="2"><p>seconds between actions</p></th>
         <tr>
             <td><p>Min</p></td>
             <td><p>Max</p></td>

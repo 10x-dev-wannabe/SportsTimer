@@ -19,7 +19,7 @@
 
     //Keyboard shortcut
     function onKeyDown(e) {
-        if (e.keyCode === 13) {
+        if (e.keyCode == 13) {
             click();
         }
     }
@@ -34,7 +34,7 @@
     bind:work={$timer.work}
     bind:rest={$timer.rest}
 />
-<SignalsMenu/>
+<!--<SignalsMenu/>
 
 <!--start button-->
 <button id="start" on:click={click}>start</button>
