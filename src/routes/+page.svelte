@@ -29,7 +29,7 @@
 <!--<svelte:window on:keydown|preventDefault={onKeyDown} />-->
 
 <!--Bind the menu settings to the timer object in the stores.js file-->
-<Menu 
+<Menu
     bind:sets={$timer.sets}
     bind:work={$timer.work}
     bind:rest={$timer.rest}
@@ -45,10 +45,10 @@
         font-size: 10vh;
         background-color: #00ff00;
         position:absolute;
-        bottom: 4vmin;
+        bottom: 10vmin;
         left: auto;
         right: auto;
         transform: translateX(-50%);
-        width: clamp(5em, 65vw, 25cm)
+        width: clamp(5cm, 65vw, 25cm)
     }
 </style>
