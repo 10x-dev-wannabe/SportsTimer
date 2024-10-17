@@ -4,7 +4,7 @@
     import { timer } from "./stores.js";
     import { goto } from "$app/navigation";
     import {Howl, Howler} from 'howler';
-    
+
     // Import and create the sound
     import select from "$lib/select.wav";
     let sound = new Howl({
@@ -23,6 +23,7 @@
             click();
         }
     }
+
 </script>
 
 <!--this is necessary for the keyboard shortcut to work-->
@@ -34,7 +35,8 @@
     bind:work={$timer.work}
     bind:rest={$timer.rest}
 />
-<!--<SignalsMenu/>
+
+<SignalsMenu/>
 
 <!--start button-->
 <button id="start" on:click={click}>start</button>

@@ -12,6 +12,7 @@
     $: work = (workMin * 60 + workSec) * 1000;
 </script>
 
+
 <div id="grid-container">
   <h id="work" class="label">WORK</h> 
   <input type="number" min=0 max="100" bind:value={workMin} id="workMin" class="input">
@@ -26,6 +27,7 @@
 </div>
 
 <style>
+
   #grid-container {
     display: grid;
     grid-auto-columns: clamp(0, auto, 45vw);

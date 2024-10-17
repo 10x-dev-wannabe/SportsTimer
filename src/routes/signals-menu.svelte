@@ -26,71 +26,101 @@
         color = undefined;
         text = undefined;
     }}
-
+    
+    let showMenu = false;
+    function togleMenu() {
+      if(showMenu===false) {
+        showMenu = true;
+      } else {
+        showMenu = false;
+      }
+    }
 </script>
 
-<div id="main">
-    <button on:click={makeAction}>Add action</button>
-    <table>
-        <tr>
-            <td>color</td>
-            <td><input type="color" bind:value={color}></td>
-        </tr>
-        <tr>
-            <td>text</td>
-            <td><input type="textfield" bind:value={text}></td>
-        </tr>
-    </table>
-    <table>
-        <th colspan="2"><p>seconds between actions</p></th>
-        <tr>
-            <td><p>Min</p></td>
-            <td><p>Max</p></td>
-        </tr>
-        <tr>
-            <td><input type="number" bind:value={$mint}></td>
-            <td><input type="number" bind:value={$maxt}></td>
-        </tr>
-    </table>
+<button id="menuTogle" on:click={togleMenu}>
+  menu
+</button>
+
+{#if showMenu}
+<div id="grid-container">
+  <h id="signalslbl" class="label">SIGNALS</h> 
+  <input type="color" bind:value={color} id="color" class="input" name="color">
+  <input type="text" bind:value={text} id="text" class="input"> 
+
+  <h id="timelbl" class="label">TIME</h>
+  <input type="number" min=0 max="100" bind:value={$mint} id="mint" class="input">
+  <input type="number" min=0 max="100" bind:value={$maxt} id="maxt" class="input"> 
+  <button on:click={makeAction}>
+    Add action
+  </button>
+
 </div>
+{/if}
 
 <style>
-    #main {
-        position: absolute;
-        width:45%;
-        right: 5%;
-        height: 90vh;
-        background-color: #00000000;
-        margin-top: 10vh;
-        overflow: hidden;
-        text-align: left;
-    }
-    tr{
-        font-size: clamp(2em, 6vmin, 7em);
-    }
-    th {
-        font-size: clamp(2em, 6vmin, 7em);
-    }
+  button {
+    grid-area: 5 / 1 / 6 / span 2;
+    width: auto;
+    font-size: 5vh;
+    font-weight: 600;
+    font-family: "courier new";
+  }
+  
+  #menuTogle {
+    position: absolute;
+    left: 50px;
+    top: 50px;
+    width: 5vmax;
+    height: 5vmax;
+    z-index: 1;
+    font-size: 2vh
+  }
 
-    input[type="number"] { 
-        color: #fff;
-        initial-value: 0;
-        font-size: 1em;
-        text-align: center;
-        background-color: #ffffff22;
-        border-color: #ffffff33;
-        -webkit-appearance: textfield;
-        -moz-appearance: textfield;
-        appearance: textfield;
-        width: clamp(2em, 30vw, 10cm)
-    }
-    
-    p {
-        margin: 0;
-    }
 
-    button {
-        width: clamp(4em, 60vw, 20cm)
-    }
+  #grid-container {
+    background-color: #000;
+    display: grid;
+    grid-auto-columns: clamp(0, 20cm, 45vw);
+    grid-template-columns: 3;
+    grid-template-rows: 8;
+    position: absolute; 
+    top: 100px;
+    left: 0%;
+  }
+  
+  #signalslbl {
+    grid-area: 1 / 1 / 2 / span 2;
+  }
+  #color {
+    grid-area: 2 / 1 / 3 / span 1;
+    height: 10vh;
+  }
+  #text {
+    grid-area: 2 / 2 / 3 / span 1;
+  }
 
+  #timelbl {
+    grid-area: 3 / 1 / 4 / span 2;
+  }
+  #mint {
+    grid-area: 4 / 1 / 5 / span 1;
+  }
+  #maxt {
+    grid-area: 4 / 2 / 5 / span 1;
+  }
+
+  .label {
+    font-size: 5vh;
+    font-weight: 600;
+    font-family: "courier new";
+  }
+
+  .input {
+    background-color: #000;
+    justify-self: stretch;
+    text-align: center;
+    font-size: 10vh;
+    color: white;
+    width: clamp(1cm, 10cm, 45vw);
+    }
 </style>

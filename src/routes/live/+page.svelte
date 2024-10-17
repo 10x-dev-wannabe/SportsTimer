@@ -13,7 +13,7 @@
         src: select
     })
 
-    // Get-Ready time
+  // Get-Ready time
     let time = 5000;
     // Get minutes and seconds
     $: m = Math.trunc(time / 60000);
@@ -72,7 +72,7 @@
     let randTime = Math.trunc((maxRandt - minRandt)* Math.random() +minRandt)
 
     function randomAction() {
-        randInterval = setInterval(()=>{randTime-=10, console.log(randTime)}, 10);
+        randInterval = setInterval(()=>{randTime-=10}, 10);
     }
     $: if (randTime < 0 && randTime > -10 && status === "work") {
         selectH.play();         
@@ -94,7 +94,7 @@
 </script>
 
 <whomp style={style}>
-<a id="stop" href="/" style="margin: 0; padding-top:0; line-height:1px yindex=-1">
+<a id="stop" href="/" style="margin: 0; padding-top:0; line-height:1px;">
         &#10799;
 </a>
 
